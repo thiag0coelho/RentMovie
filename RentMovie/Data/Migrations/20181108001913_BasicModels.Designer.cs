@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentMovie.Data;
 
 namespace RentMovie.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108001913_BasicModels")]
+    partial class BasicModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,31 +186,6 @@ namespace RentMovie.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RentMovie.Domain.Movie", b =>
-                {
-                    b.Property<int>("MovieId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active");
-
-                    b.Property<DateTime>("CreationDate");
-
-                    b.Property<int?>("MovieGenderId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int?>("RentId");
-
-                    b.HasKey("MovieId");
-
-                    b.HasIndex("MovieGenderId");
-
-                    b.HasIndex("RentId");
-
-                    b.ToTable("Movie");
-                });
-
             modelBuilder.Entity("RentMovie.Domain.MovieGender", b =>
                 {
                     b.Property<int>("MovieGenderId")
@@ -224,21 +201,6 @@ namespace RentMovie.Data.Migrations
                     b.HasKey("MovieGenderId");
 
                     b.ToTable("MovieGender");
-                });
-
-            modelBuilder.Entity("RentMovie.Domain.Rent", b =>
-                {
-                    b.Property<int>("RentId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Cpf");
-
-                    b.Property<DateTime>("RentDate");
-
-                    b.HasKey("RentId");
-
-                    b.ToTable("Rent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -284,17 +246,6 @@ namespace RentMovie.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RentMovie.Domain.Movie", b =>
-                {
-                    b.HasOne("RentMovie.Domain.MovieGender", "MovieGender")
-                        .WithMany()
-                        .HasForeignKey("MovieGenderId");
-
-                    b.HasOne("RentMovie.Domain.Rent")
-                        .WithMany("Movies")
-                        .HasForeignKey("RentId");
                 });
 #pragma warning restore 612, 618
         }

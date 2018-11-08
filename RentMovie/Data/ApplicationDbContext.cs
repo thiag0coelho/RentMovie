@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RentMovie.Domain;
 
 namespace RentMovie.Data
 {
@@ -12,5 +13,8 @@ namespace RentMovie.Data
             : base(options)
         {
         }
+        public DbSet<RentMovie.Domain.MovieGender> MovieGender { get; set; }
+        public DbSet<RentMovie.Domain.Movie> Movie { get; set; }
+        public DbSet<RentMovie.Domain.Rent> Rent { get; set; }
     }
 }
