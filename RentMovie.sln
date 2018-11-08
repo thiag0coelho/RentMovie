@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentMovie", "RentMovie\RentMovie.csproj", "{7D3B4C2A-500D-4369-AA71-54556E875B86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentMovie.Domain", "RentMovie.Domain\RentMovie.Domain.csproj", "{55F8BD37-A16E-4A2C-B222-04A9010F9A78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7D3B4C2A-500D-4369-AA71-54556E875B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D3B4C2A-500D-4369-AA71-54556E875B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D3B4C2A-500D-4369-AA71-54556E875B86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55F8BD37-A16E-4A2C-B222-04A9010F9A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F8BD37-A16E-4A2C-B222-04A9010F9A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F8BD37-A16E-4A2C-B222-04A9010F9A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F8BD37-A16E-4A2C-B222-04A9010F9A78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
