@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentMovie.Migrations
 {
+    /// <summary>
+    /// Crud inicial com as tabelas básicas
+    /// Tabelas padrões de roles/users do servidor Identity
+    /// </summary>
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -16,5 +16,6 @@ namespace RentMovie.Data
         public DbSet<RentMovie.Domain.MovieGender> MovieGender { get; set; }
         public DbSet<RentMovie.Domain.Movie> Movie { get; set; }
         public DbSet<RentMovie.Domain.Rent> Rent { get; set; }
+        public DbSet<RentMovie.Domain.MovieRental> MovieRental { get; set; }
     }
 }
