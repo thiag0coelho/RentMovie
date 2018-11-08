@@ -194,6 +194,8 @@ namespace RentMovie.Migrations
 
                     b.Property<DateTime>("CreationDate");
 
+                    b.Property<int>("MovieGenderId");
+
                     b.Property<string>("Name");
 
                     b.HasKey("MovieId");

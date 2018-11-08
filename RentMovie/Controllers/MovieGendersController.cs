@@ -22,23 +22,6 @@ namespace RentMovie.Controllers
             return View(await _context.MovieGender.ToListAsync());
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var movieGender = await _context.MovieGender.FirstOrDefaultAsync(m => m.MovieGenderId == id);
-
-            if (movieGender == null)
-            {
-                return NotFound();
-            }
-
-            return View(movieGender);
-        }
-
         public IActionResult Create()
         {
             return View();

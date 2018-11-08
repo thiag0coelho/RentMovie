@@ -10,7 +10,7 @@ using RentMovie.Data;
 namespace RentMovie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181108012353_Initial")]
+    [Migration("20181108022114_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,8 @@ namespace RentMovie.Migrations
                     b.Property<bool>("Active");
 
                     b.Property<DateTime>("CreationDate");
+
+                    b.Property<int>("MovieGenderId");
 
                     b.Property<string>("Name");
 

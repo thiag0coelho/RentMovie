@@ -55,7 +55,8 @@ namespace RentMovie.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     CreationDate = table.Column<DateTime>(nullable: false),
-                    Active = table.Column<bool>(nullable: false)
+                    Active = table.Column<bool>(nullable: false),
+                    MovieGenderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
