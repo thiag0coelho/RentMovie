@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentMovie.Data;
 
-namespace RentMovie.Data.Migrations
+namespace RentMovie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181108003120_BasicModels2")]
-    partial class BasicModels2
+    [Migration("20181108012353_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,17 +196,9 @@ namespace RentMovie.Data.Migrations
 
                     b.Property<DateTime>("CreationDate");
 
-                    b.Property<int?>("MovieGenderId");
-
                     b.Property<string>("Name");
 
-                    b.Property<int?>("RentId");
-
                     b.HasKey("MovieId");
-
-                    b.HasIndex("MovieGenderId");
-
-                    b.HasIndex("RentId");
 
                     b.ToTable("Movie");
                 });
@@ -286,17 +278,6 @@ namespace RentMovie.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RentMovie.Domain.Movie", b =>
-                {
-                    b.HasOne("RentMovie.Domain.MovieGender", "MovieGender")
-                        .WithMany()
-                        .HasForeignKey("MovieGenderId");
-
-                    b.HasOne("RentMovie.Domain.Rent")
-                        .WithMany("Movies")
-                        .HasForeignKey("RentId");
                 });
 #pragma warning restore 612, 618
         }

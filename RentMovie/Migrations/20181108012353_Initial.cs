@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RentMovie.Data.Migrations
+namespace RentMovie.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,50 @@ namespace RentMovie.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Movie",
+                columns: table => new
+                {
+                    MovieId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    Active = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Movie", x => x.MovieId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MovieGender",
+                columns: table => new
+                {
+                    MovieGenderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false),
+                    Active = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovieGender", x => x.MovieGenderId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rent",
+                columns: table => new
+                {
+                    RentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Cpf = table.Column<string>(nullable: true),
+                    RentDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rent", x => x.RentId);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,6 +253,15 @@ namespace RentMovie.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Movie");
+
+            migrationBuilder.DropTable(
+                name: "MovieGender");
+
+            migrationBuilder.DropTable(
+                name: "Rent");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

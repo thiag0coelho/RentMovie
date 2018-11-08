@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RentMovie.Domain
 {
@@ -9,6 +7,5 @@ namespace RentMovie.Domain
         public int RentId { get; set; }
         public string Cpf { get; set; }
         public DateTime RentDate { get; set; }
-        public List<Movie> Movies { get; set; }
     }
 }

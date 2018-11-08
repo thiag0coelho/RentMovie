@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace RentMovie.Domain
 {
@@ -12,6 +8,5 @@ namespace RentMovie.Domain
         public string Name { get; set; }
         public DateTime CreationDate { get; set; }
         public bool Active { get; set; }
-        public MovieGender MovieGender { get; set; }
     }
 }
