@@ -20,7 +20,7 @@ namespace RentMovie.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            return View(await _context.Movie.AsNoTracking().ToListAsync());
         }
 
         public IActionResult Create()
