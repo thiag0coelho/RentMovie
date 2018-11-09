@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -36,9 +37,21 @@ namespace RentMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                rent.RentDate = DateTime.Now;
+                var sysDate = DateTime.Now;
+                rent.RentDate = sysDate;
 
                 _context.Add(rent);
+                await _context.SaveChangesAsync();
+
+                List<MovieRental> rentals = rent.MovieIds.Split(',')
+                    .Select(movie => new MovieRental
+                    {
+                        CreationDate = sysDate,
+                        MovieId = int.Parse(movie),
+                        RentId = rent.RentId
+                    }).ToList();
+
+                await _context.AddRangeAsync(rentals);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));

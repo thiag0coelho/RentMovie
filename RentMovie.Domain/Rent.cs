@@ -13,6 +13,7 @@ namespace RentMovie.Domain
         [StringLength(11)]
         public string Cpf { get; set; }
 
+        [DisplayName("Data Aluguel")]
         [Required]
         public DateTime RentDate { get; set; }
 
