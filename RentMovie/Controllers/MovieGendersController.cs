@@ -135,7 +135,7 @@ namespace RentMovie.Controllers
 
             await _movieGenderRepository.DeleteList(ids);
 
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
         private bool MovieGenderExists(int id)

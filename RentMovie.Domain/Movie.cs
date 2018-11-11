@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RentMovie.Domain
 {
@@ -11,19 +9,19 @@ namespace RentMovie.Domain
         [Required]
         public int MovieId { get; set; }
 
-        [DisplayName("Nome")]
+        [DisplayName("Name")]
         [Required]
         public string Name { get; set; }
 
-        [DisplayName("Data de Criação")]
+        [DisplayName("Creation Date")]
         [Required]
         public DateTime CreationDate { get; set; }
 
-        [DisplayName("Ativo")]
+        [DisplayName("Active")]
         [Required]
         public bool Active { get; set; }
 
-        [DisplayName("Gênero")]
+        [DisplayName("Movie Genre")]
         [Required]
         public int MovieGenderId { get; set; }
     }

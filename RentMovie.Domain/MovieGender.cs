@@ -8,15 +8,15 @@ namespace RentMovie.Domain
     {
         public int MovieGenderId { get; set; }
 
-        [DisplayName("Nome")]
+        [DisplayName("Name")]
         [Required]
         public string Name { get; set; }
 
-        [DisplayName("Data de Criação")]
+        [DisplayName("Creation Date")]
         [Required]
         public DateTime CreationDate { get; set; }
 
-        [DisplayName("Ativo")]
+        [DisplayName("Active")]
         [Required]
         public bool Active { get; set; }
     }

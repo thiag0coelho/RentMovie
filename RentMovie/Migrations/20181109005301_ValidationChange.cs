@@ -2,6 +2,9 @@
 
 namespace RentMovie.Migrations
 {
+    /// <summary>
+    /// Adjusting validations like max length for CPF, and required for name and movie gender name
+    /// </summary>
     public partial class ValidationChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

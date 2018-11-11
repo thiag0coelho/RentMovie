@@ -9,25 +9,31 @@
 
 <p>
     <a asp-action="Create">Create New</a>
+    <br />
+    <a id="deleteSelected">Delete Selected</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                <input id="chkAll" type="checkbox" />
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreationDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Active)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                <input class="checkbox-list" type="checkbox" value="@item.MovieId" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -35,13 +41,42 @@
                 @Html.DisplayFor(modelItem => item.CreationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
                 <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        document.querySelector("#chkAll").addEventListener("change", selectAllCheckboxes);
+        document.querySelector("#deleteSelected").addEventListener("click", deleteSelected);
+
+        function selectAllCheckboxes(e) {
+            let checkboxes = document.querySelectorAll('.checkbox-list');
+            for (i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = e.target.checked;
+            }
+        }
+
+        async function deleteSelected(e) {
+            e.preventDefault();
+            const selected = document.querySelectorAll('.checkbox-list:checked');
+            const values = Array.from(selected).map(el => el.value);
+            let value = "";
+            if (values) {
+                value = values.join(',');
+            }
+            let link = `@Url.Action("DeleteSelected", "Movies")?ids=${value}`;
+            let data = await fetch(link,
+            {
+                method: 'POST'
+            });
+            console.log(data.status);
+            window.location.href = `@Url.Action("Index", "Movies")`;
+        }
+    </script>
+}
+

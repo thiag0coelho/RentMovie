@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RentMovie.Migrations
 {
     /// <summary>
-    /// Crud inicial com as tabelas básicas
-    /// Tabelas padrões de roles/users do servidor Identity
+    /// Initial crud with basic tables
+    /// I couldnt figure out how to correctly implement foreign keys with code first, as I never used code first before
+    /// Default tables for Identity Server users/roles
     /// </summary>
     public partial class Initial : Migration
     {

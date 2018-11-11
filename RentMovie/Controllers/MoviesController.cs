@@ -6,21 +6,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RentMovie.Data;
 using RentMovie.Domain;
+using RentMovie.Repository.Interface;
 
 namespace RentMovie.Controllers
 {
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMovieRepository _movieRepository;
 
-        public MoviesController(ApplicationDbContext context)
+        public MoviesController(ApplicationDbContext context, IMovieRepository movieRepository)
         {
             _context = context;
+            _movieRepository = movieRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.AsNoTracking().ToListAsync());
+            return View(await _context.Movie.Where(x => x.Active).AsNoTracking().ToListAsync());
         }
 
         public IActionResult Create()
@@ -121,10 +124,25 @@ namespace RentMovie.Controllers
         {
             var movie = await _context.Movie.FindAsync(id);
 
-            _context.Movie.Remove(movie);
+            movie.Active = false;
+            _context.Movie.Update(movie);
+
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost, ActionName("DeleteSelected")]
+        public async Task<IActionResult> DeleteSelected(string ids)
+        {
+            if (string.IsNullOrEmpty(ids))
+            {
+                return NotFound();
+            }
+
+            await _movieRepository.DeleteList(ids);
+
+            return Ok();
         }
 
         private bool MovieExists(int id)

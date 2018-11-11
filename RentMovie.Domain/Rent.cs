@@ -13,12 +13,12 @@ namespace RentMovie.Domain
         [StringLength(11)]
         public string Cpf { get; set; }
 
-        [DisplayName("Data Aluguel")]
+        [DisplayName("Rent Date")]
         [Required]
         public DateTime RentDate { get; set; }
 
         [NotMapped]
-        [DisplayName("Filmes")]
+        [DisplayName("Movies")]
         [Required]
         public string MovieIds { get; set; }
     }

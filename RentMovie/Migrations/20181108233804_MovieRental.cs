@@ -6,6 +6,10 @@ namespace RentMovie.Migrations
 {
     public partial class MovieRental : Migration
     {
+        /// <summary>
+        /// Adding new table for renting movies
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
