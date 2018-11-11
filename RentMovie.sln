@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentMovie", "RentMovie\RentMovie.csproj", "{7D3B4C2A-500D-4369-AA71-54556E875B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentMovie", "RentMovie\RentMovie.csproj", "{7D3B4C2A-500D-4369-AA71-54556E875B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentMovie.Domain", "RentMovie.Domain\RentMovie.Domain.csproj", "{55F8BD37-A16E-4A2C-B222-04A9010F9A78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentMovie.Domain", "RentMovie.Domain\RentMovie.Domain.csproj", "{55F8BD37-A16E-4A2C-B222-04A9010F9A78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

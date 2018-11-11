@@ -1,0 +1,2 @@
+﻿Direct access queries via ADO should be located in Repository layer.
+Altough there's articles saying Repository & Unit of Work pattern are dead on asp.net core, as EF Core have it built in, but for Dapper i think it still makes sense.

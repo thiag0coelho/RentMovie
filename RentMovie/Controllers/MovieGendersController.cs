@@ -5,21 +5,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RentMovie.Data;
 using RentMovie.Domain;
+using RentMovie.Repository.Interface;
 
 namespace RentMovie.Controllers
 {
     public class MovieGendersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMovieGenderRepository _movieGenderRepository;
 
-        public MovieGendersController(ApplicationDbContext context)
+        public MovieGendersController(ApplicationDbContext context, IMovieGenderRepository movieGenderRepository)
         {
             _context = context;
+            _movieGenderRepository = movieGenderRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MovieGender.AsNoTracking().ToListAsync());
+            return View(await _context.MovieGender.Where(x => x.Active).AsNoTracking().ToListAsync());
         }
 
         public IActionResult Create()
@@ -51,11 +54,13 @@ namespace RentMovie.Controllers
                 return NotFound();
             }
 
-            var movieGender = await _context.MovieGender.FindAsync(id);
+            var movieGender = await _movieGenderRepository.GetByID(id.GetValueOrDefault());
+
             if (movieGender == null)
             {
                 return NotFound();
             }
+
             return View(movieGender);
         }
 
@@ -113,8 +118,22 @@ namespace RentMovie.Controllers
         {
             var movieGender = await _context.MovieGender.FindAsync(id);
 
-            _context.MovieGender.Remove(movieGender);
+            movieGender.Active = false;
+            _context.Update(movieGender);
             await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost, ActionName("DeleteSelected")]
+        public async Task<IActionResult> DeleteSelected(string ids)
+        {
+            if (string.IsNullOrEmpty(ids))
+            {
+                return NotFound();
+            }
+
+            await _movieGenderRepository.DeleteList(ids);
 
             return RedirectToAction(nameof(Index));
         }

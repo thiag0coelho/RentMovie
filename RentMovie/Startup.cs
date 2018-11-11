@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using RentMovie.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RentMovie.Repository;
+using RentMovie.Repository.Interface;
 
 namespace RentMovie
 {
@@ -21,6 +23,8 @@ namespace RentMovie
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IMovieGenderRepository, MovieGenderRepository>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;

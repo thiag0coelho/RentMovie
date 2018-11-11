@@ -1,0 +1,2 @@
+﻿For simplicity(and lack of time) i did not use Application Layer for logic
+I also tought in implementing the "new" architecture using CQRS, MediatR, FluentValidation, but haven't enough time to get confortable with it
