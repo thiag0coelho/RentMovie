@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RentMovie.Domain
 {
-    public class MovieGender
+    public class MovieGenre
     {
-        public int MovieGenderId { get; set; }
+        public int MovieGenreId { get; set; }
 
         [DisplayName("Name")]
         [Required]

@@ -35,7 +35,7 @@ namespace RentMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieId,Name,CreationDate,MovieGenderId,Active")] Movie movie)
+        public async Task<IActionResult> Create([Bind("MovieId,Name,CreationDate,MovieGenreId,Active")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace RentMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MovieId,Name,CreationDate,MovieGenderId,Active")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("MovieId,Name,CreationDate,MovieGenreId,Active")] Movie movie)
         {
             if (id != movie.MovieId)
             {
@@ -152,12 +152,12 @@ namespace RentMovie.Controllers
 
         private void LoadLists()
         {
-            ViewBag.MovieGenderList = _context.MovieGender
+            ViewBag.MovieGenreList = _context.MovieGenre
                 .Where(x => x.Active == true)
                 .Select(c => new SelectListItem()
                 {
                     Text = c.Name,
-                    Value = c.MovieGenderId.ToString()
+                    Value = c.MovieGenreId.ToString()
                 }).ToList();
         }
     }

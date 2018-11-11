@@ -9,20 +9,20 @@ using RentMovie.Repository.Interface;
 
 namespace RentMovie.Controllers
 {
-    public class MovieGendersController : Controller
+    public class MovieGenresController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IMovieGenderRepository _movieGenderRepository;
+        private readonly IMovieGenreRepository _MovieGenreRepository;
 
-        public MovieGendersController(ApplicationDbContext context, IMovieGenderRepository movieGenderRepository)
+        public MovieGenresController(ApplicationDbContext context, IMovieGenreRepository MovieGenreRepository)
         {
             _context = context;
-            _movieGenderRepository = movieGenderRepository;
+            _MovieGenreRepository = MovieGenreRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MovieGender.Where(x => x.Active).AsNoTracking().ToListAsync());
+            return View(await _context.MovieGenre.Where(x => x.Active).AsNoTracking().ToListAsync());
         }
 
         public IActionResult Create()
@@ -32,19 +32,19 @@ namespace RentMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieGenderId,Name,CreationDate,Active")] MovieGender movieGender)
+        public async Task<IActionResult> Create([Bind("MovieGenreId,Name,CreationDate,Active")] MovieGenre MovieGenre)
         {
             if (ModelState.IsValid)
             {
-                movieGender.CreationDate = DateTime.Now;
-                movieGender.Active = true;
+                MovieGenre.CreationDate = DateTime.Now;
+                MovieGenre.Active = true;
 
-                _context.Add(movieGender);
+                _context.Add(MovieGenre);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
-            return View(movieGender);
+            return View(MovieGenre);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -54,21 +54,21 @@ namespace RentMovie.Controllers
                 return NotFound();
             }
 
-            var movieGender = await _movieGenderRepository.GetByID(id.GetValueOrDefault());
+            var MovieGenre = await _MovieGenreRepository.GetByID(id.GetValueOrDefault());
 
-            if (movieGender == null)
+            if (MovieGenre == null)
             {
                 return NotFound();
             }
 
-            return View(movieGender);
+            return View(MovieGenre);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MovieGenderId,Name,CreationDate,Active")] MovieGender movieGender)
+        public async Task<IActionResult> Edit(int id, [Bind("MovieGenreId,Name,CreationDate,Active")] MovieGenre MovieGenre)
         {
-            if (id != movieGender.MovieGenderId)
+            if (id != MovieGenre.MovieGenreId)
             {
                 return NotFound();
             }
@@ -77,12 +77,12 @@ namespace RentMovie.Controllers
             {
                 try
                 {
-                    _context.Update(movieGender);
+                    _context.Update(MovieGenre);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieGenderExists(movieGender.MovieGenderId))
+                    if (!MovieGenreExists(MovieGenre.MovieGenreId))
                     {
                         return NotFound();
                     }
@@ -93,7 +93,7 @@ namespace RentMovie.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movieGender);
+            return View(MovieGenre);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -103,23 +103,23 @@ namespace RentMovie.Controllers
                 return NotFound();
             }
 
-            var movieGender = await _context.MovieGender.FirstOrDefaultAsync(m => m.MovieGenderId == id);
-            if (movieGender == null)
+            var MovieGenre = await _context.MovieGenre.FirstOrDefaultAsync(m => m.MovieGenreId == id);
+            if (MovieGenre == null)
             {
                 return NotFound();
             }
 
-            return View(movieGender);
+            return View(MovieGenre);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movieGender = await _context.MovieGender.FindAsync(id);
+            var MovieGenre = await _context.MovieGenre.FindAsync(id);
 
-            movieGender.Active = false;
-            _context.Update(movieGender);
+            MovieGenre.Active = false;
+            _context.Update(MovieGenre);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -133,14 +133,14 @@ namespace RentMovie.Controllers
                 return NotFound();
             }
 
-            await _movieGenderRepository.DeleteList(ids);
+            await _MovieGenreRepository.DeleteList(ids);
 
             return Ok();
         }
 
-        private bool MovieGenderExists(int id)
+        private bool MovieGenreExists(int id)
         {
-            return _context.MovieGender.Any(e => e.MovieGenderId == id);
+            return _context.MovieGenre.Any(e => e.MovieGenreId == id);
         }
     }
 }

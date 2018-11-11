@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace RentMovie.Repository
 {
-    public class MovieGenderRepository : IMovieGenderRepository
+    public class MovieGenreRepository : IMovieGenreRepository
     {
         private readonly IConfiguration _config;
 
-        public MovieGenderRepository(IConfiguration config)
+        public MovieGenreRepository(IConfiguration config)
         {
             _config = config;
         }
@@ -31,20 +31,20 @@ namespace RentMovie.Repository
             using (IDbConnection conn = Connection)
             {
                 conn.Open();
-                string sQuery = "UPDATE MovieGender SET Active = 0 WHERE MovieGenderId IN @ID";
+                string sQuery = "UPDATE MovieGenre SET Active = 0 WHERE MovieGenreId IN @ID";
                 var idsInt = ids.Split(',').Select(int.Parse).ToList();
                 var result = await conn.ExecuteAsync(sQuery , new { ID = idsInt });
             }
         }
 
-        public async Task<MovieGender> GetByID(int id)
+        public async Task<MovieGenre> GetByID(int id)
         {
             using (IDbConnection conn = Connection)
             {
-                string sQuery = "SELECT MovieGenderId, Name, CreationDate, Active FROM MovieGender WHERE MovieGenderId = @ID";
+                string sQuery = "SELECT MovieGenreId, Name, CreationDate, Active FROM MovieGenre WHERE MovieGenreId = @ID";
 
                 conn.Open();
-                var result = await conn.QueryAsync<MovieGender>(sQuery, new { ID = id });
+                var result = await conn.QueryAsync<MovieGenre>(sQuery, new { ID = id });
 
                 return result.FirstOrDefault();
             }

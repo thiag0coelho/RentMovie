@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentMovie.Domain.MovieGender>
+﻿@model IEnumerable<RentMovie.Domain.MovieGenre>
 
 @{
     ViewData["Title"] = "Index";
@@ -32,7 +32,7 @@
         {
             <tr>
                 <td>
-                    <input class="checkbox-list" type="checkbox" value="@item.MovieGenderId"/>
+                    <input class="checkbox-list" type="checkbox" value="@item.MovieGenreId"/>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -41,8 +41,8 @@
                     @Html.DisplayFor(modelItem => item.CreationDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.MovieGenderId">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.MovieGenderId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.MovieGenreId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MovieGenreId">Delete</a>
                 </td>
             </tr>
         }
@@ -69,13 +69,13 @@
             if (values) {
                 value = values.join(',');
             }
-            let link = `@Url.Action("DeleteSelected", "MovieGenders")?ids=${value}`;
+            let link = `@Url.Action("DeleteSelected", "MovieGenres")?ids=${value}`;
             let data = await fetch(link,
             {
                 method: 'POST'
             });
             console.log(data.status);
-            window.location.href = `@Url.Action("Index", "MovieGenders")`;
+            window.location.href = `@Url.Action("Index", "MovieGenres")`;
         }
     </script>
 }

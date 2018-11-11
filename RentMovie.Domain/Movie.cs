@@ -23,6 +23,6 @@ namespace RentMovie.Domain
 
         [DisplayName("Movie Genre")]
         [Required]
-        public int MovieGenderId { get; set; }
+        public int MovieGenreId { get; set; }
     }
 }

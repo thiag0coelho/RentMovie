@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace RentMovie.Repository.Interface
 {
-    public interface IMovieGenderRepository
+    public interface IMovieGenreRepository
     {
         Task DeleteList(string ids);
-        Task<MovieGender> GetByID(int id);
+        Task<MovieGenre> GetByID(int id);
     }
 }

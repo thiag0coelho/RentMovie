@@ -23,7 +23,7 @@ namespace RentMovie
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IMovieGenderRepository, MovieGenderRepository>();
+            services.AddTransient<IMovieGenreRepository, MovieGenreRepository>();
             services.AddTransient<IMovieRepository, MovieRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>

@@ -1,4 +1,4 @@
-﻿@model RentMovie.Domain.MovieGender
+﻿@model RentMovie.Domain.MovieGenre
 
 @{
     ViewData["Title"] = "Delete";
@@ -9,7 +9,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>MovieGender</h4>
+    <h4>MovieGenre</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,7 +27,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="MovieGenderId" />
+        <input type="hidden" asp-for="MovieGenreId" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
