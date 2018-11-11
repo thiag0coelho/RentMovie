@@ -14,6 +14,8 @@ namespace RentMovie
 {
     public class Startup
     {
+        private string _moviesApiKey = null;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,6 +25,8 @@ namespace RentMovie
 
         public void ConfigureServices(IServiceCollection services)
         {
+            _moviesApiKey = Configuration["Movies:ServiceApiKey"];
+
             services.AddTransient<IMovieGenreRepository, MovieGenreRepository>();
             services.AddTransient<IMovieRepository, MovieRepository>();
 
@@ -33,7 +37,7 @@ namespace RentMovie
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration["Movies:ConnectionString"]));
 
             services.AddDefaultIdentity<IdentityUser>(options =>
             {
@@ -53,6 +57,13 @@ namespace RentMovie
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Test User Secret
+            //var result = string.IsNullOrEmpty(_moviesApiKey) ? "Null" : "Not Null";
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync($"Secret is {result}");
+            //});
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
