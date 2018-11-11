@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RentMovie.Models;
 
@@ -12,7 +8,14 @@ namespace RentMovie.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", new { Controller = "Movies" });
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account",  new { Area = "Identity" });
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

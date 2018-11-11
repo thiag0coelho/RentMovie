@@ -28,13 +28,16 @@
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RentMovie</a>
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="MovieGenres" asp-action="Index">Genres</a></li>
-                    <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
-                    <li><a asp-area="" asp-controller="Rents" asp-action="Index">Rent Movies</a></li>
-                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
+                        <li><a asp-area="" asp-controller="MovieGenres" asp-action="Index">Genres</a></li>
+                        <li><a asp-area="" asp-controller="Rents" asp-action="Index">Rent Movies</a></li>
+                    </ul>
+                }
                 <partial name="_LoginPartial" />
             </div>
         </div>
@@ -44,10 +47,6 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - RentMovie</p>
-        </footer>
     </div>
 
     <environment include="Development">

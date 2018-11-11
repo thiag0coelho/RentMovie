@@ -37,14 +37,14 @@ namespace RentMovie
 
             services.AddDefaultIdentity<IdentityUser>(options =>
             {
-               options.Password.RequireDigit = true;
-               options.Password.RequireLowercase = true;
-               options.Password.RequireNonAlphanumeric = false;
-               options.Password.RequireUppercase = false;
-               options.Password.RequiredLength = 6;
-               options.User.AllowedUserNameCharacters = null;
-               options.SignIn.RequireConfirmedEmail = false;
-               options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.User.AllowedUserNameCharacters = null;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -72,6 +72,10 @@ namespace RentMovie
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                name: "areaRoute",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
