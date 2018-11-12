@@ -21,7 +21,7 @@ namespace RentMovie.Repository
         {
             get
             {
-                return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+                return new SqlConnection(_config["Movies:ConnectionString"]);
             }
         }
 

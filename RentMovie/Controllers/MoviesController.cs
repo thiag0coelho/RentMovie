@@ -15,6 +15,7 @@ namespace RentMovie.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IMovieRepository _movieRepository;
 
+        // Using Dependency Injection
         public MoviesController(ApplicationDbContext context, IMovieRepository movieRepository)
         {
             _context = context;
@@ -23,6 +24,7 @@ namespace RentMovie.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //AsNoTracking is used to decouple these retrieved objects from entity framework, it boosts performance
             return View(await _context.Movie.Where(x => x.Active).AsNoTracking().ToListAsync());
         }
 
@@ -35,6 +37,7 @@ namespace RentMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // Bind is used to only allow the mentioned properties to be received in a request
         public async Task<IActionResult> Create([Bind("MovieId,Name,CreationDate,MovieGenreId,Active")] Movie movie)
         {
             if (ModelState.IsValid)
